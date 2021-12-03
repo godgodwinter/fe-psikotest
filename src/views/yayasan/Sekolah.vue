@@ -12,10 +12,10 @@
 
         <dataSekolah></dataSekolah>
 
-        <dataContoh></dataContoh>
+        <!-- <dataContoh></dataContoh> -->
 
 
-      <div class="mt-2 px-2">
+      <!-- <div class="mt-2 px-2">
 <button class="btn btn-info btn-round">Tambah</button>
       </div>
         <CCardBody>
@@ -54,7 +54,7 @@
               </CTableBody>
             </CTable>
           </DocsExample>
-        </CCardBody>
+        </CCardBody> -->
       </CCard>
     </CCol>
       </CCard>
@@ -64,13 +64,13 @@
 
 <script>
 import dataSekolah from '@/components/DataTables/dataSekolah.vue';
-import dataContoh from '@/components/DataTables/dataContoh.vue';
+// import dataContoh from '@/components/DataTables/dataContoh.vue';
 
 export default {
   name: 'Sekolah',
   components: {
     dataSekolah,
-    dataContoh,
+    // dataContoh,
   },
 
 

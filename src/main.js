@@ -22,6 +22,7 @@ const app = createApp(App)
 
 app.config.globalProperties.appName = 'appName';
 app.config.globalProperties.baseUrl = 'https://psikotest.baemon.web.id/api/';
+// app.config.globalProperties.baseUrl = 'http://localhost:8000/api/';
 app.use(VueSweetalert2)
 app.use(router)
 app.use(store)
