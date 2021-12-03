@@ -40,19 +40,65 @@
       <!-- <CDropdownItem>
         <CIcon icon="cil-shield-alt" /> Lock Account
       </CDropdownItem> -->
-      <CDropdownItem> <CIcon icon="cil-lock-locked" /> Logout </CDropdownItem>
+      <CDropdownItem > <a @click.prevent="logout"><CIcon icon="cil-lock-locked" /> Logout </a> </CDropdownItem>
     </CDropdownMenu>
   </CDropdown>
 </template>
 
 <script>
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import axios from 'axios'
 import avatar from '@/assets/images/avatars/8.jpg'
 export default {
   name: 'AppHeaderDropdownAccnt',
   setup() {
+
+
+            //state token
+            const token = localStorage.getItem('token')
+
+            //inisialisasi vue router on Composition API
+            const router = useRouter()
+
+            //state user
+            const user = ref('')
+
+
+            onMounted(() =>{
+            })
+     //method logout
+            function logout() {
+
+                //logout
+                axios.defaults.headers.common.Authorization = `Bearer ${token}`
+                axios.post('http://localhost:8000/api/logout')
+                .then(response => {
+
+                    if(response.data.success) {
+
+                        //remove localStorage
+                        localStorage.removeItem('token')
+
+                        //redirect ke halaman login
+                        return router.push({
+                            name: 'login'
+                        })
+
+                    }
+
+                })
+                .catch(error => {
+                    console.log(error.response.data)
+                })
+
+            }
     return {
       avatar: avatar,
       itemsCount: 42,
+                token,      // <-- state token
+                user,       // <-- state user
+                logout      // <-- method logout
     }
   },
 }
