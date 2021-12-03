@@ -78,6 +78,7 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { inject } from 'vue'
+import { getCurrentInstance } from 'vue';
 
 export default {
   name: 'LoginYayasan',
@@ -95,6 +96,8 @@ export default {
     },
 
         setup() {
+            const { proxy } = getCurrentInstance();
+
         const swal = inject('$swal')
 
             //inisialisasi vue router on Composition API
@@ -133,7 +136,7 @@ export default {
                 let password = user.password
 
                 //send server with axios
-                axios.post('http://localhost:8000/api/login', {
+                axios.post(`${proxy.baseUrl}login`, {
                         email,
                         password,
                 })

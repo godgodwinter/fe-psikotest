@@ -7,16 +7,15 @@
             <h1 class="float-start display-3 me-4">404</h1>
             <h4 class="pt-3">Oops! You're lost.</h4>
             <p class="text-medium-emphasis float-start">
-              The page you are looking for was not found.
+              Halaman tidak ditemukan.
             </p>
           </div>
-          <CInputGroup class="input-prepend">
-            <CInputGroupText>
-              <CIcon icon="cil-magnifying-glass" />
-            </CInputGroupText>
-            <CFormInput type="text" placeholder="What are you looking for?" />
-            <CButton color="info">Search</CButton>
-          </CInputGroup>
+
+      <router-link :to="{name: 'Sekolah'}" class="btn btn-info btn-lg btn-round" >
+   <i class="fas fa-backward fa-lg px-2"></i>
+    &nbsp; Kembali
+    <!-- <span class="badge bg-primary ms-auto">!</span> -->
+    </router-link>
         </CCol>
       </CRow>
     </CContainer>

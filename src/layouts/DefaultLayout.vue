@@ -16,6 +16,7 @@
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { getCurrentInstance } from 'vue';
 
 import { CContainer } from '@coreui/vue'
 import AppFooter from '@/components/AppFooter.vue'
@@ -32,6 +33,7 @@ export default {
   },
 
         setup() {
+            const { proxy } = getCurrentInstance();
 
             //state token
             const token = localStorage.getItem('token')
@@ -44,61 +46,52 @@ export default {
 
             //mounted properti
             onMounted(() =>{
-
+              // console.log(proxy.baseUrl );
                 //check Token exist
                 if(!token) {
                     return router.push({
                         name: 'login'
                     })
                 }
-
-                //get data user
-                axios.defaults.headers.common.Authorization = `Bearer ${token}`
-                axios.get('http://localhost:8000/api/user')
-                .then(response => {
-
-                    //console.log(response.data.name)
-                    user.value = response.data
-
-                })
-                .catch(error => {
-                    console.log(error.response.data)
-                })
+                validasitoken();
 
             })
 
-            //method logout
-            function logout() {
+          function validasitoken() {
 
-                //logout
+                //validasitoken
                 axios.defaults.headers.common.Authorization = `Bearer ${token}`
-                axios.post('http://localhost:8000/api/logout')
+                axios.post(`${proxy.baseUrl}validasitoken`)
                 .then(response => {
 
                     if(response.data.success) {
 
-                        //remove localStorage
-                        localStorage.removeItem('token')
 
-                        //redirect ke halaman login
-                        return router.push({
-                            name: 'login'
-                        })
+                       console.log('Validasi Token Success' );
 
                     }
+                    // console.log('Tokentidak valid');
+
 
                 })
                 .catch(error => {
                     console.log(error.response.data)
+
+                    return router.push({
+                        name: 'login'
+                    })
                 })
 
             }
 
+
+
             return {
                 token,      // <-- state token
                 user,       // <-- state user
-                logout      // <-- method logout
+                validasitoken,       // <-- state user
             }
+
 
         }
 }

@@ -501,9 +501,7 @@ export default {
 }
 </script>
 
-<style scoped src="@/assets/css/babeng.css">
-</style>
-<style >
+<style  scoped >
 
 .th{
   background-color: '#C0C0C0';

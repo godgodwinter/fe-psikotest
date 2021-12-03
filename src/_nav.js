@@ -4,10 +4,10 @@ export default [
     name: 'Dashboard',
     to: '/dashboard',
     icon: 'cil-speedometer',
-    badge: {
-      color: 'primary',
-      text: 'NEW',
-    },
+    // badge: {
+    //   color: 'primary',
+    //   text: 'NEW',
+    // },
   },
   {
     component: 'CNavTitle',
@@ -15,9 +15,9 @@ export default [
   },
   {
     component: 'CNavItem',
-    name: 'Sekolah',
+    name: `Sekolah`,
     to: '/sekolah',
-    icon: 'cil-drop',
+    icon: 'fas fa-school',
   },
   {
     component: 'CNavTitle',
@@ -27,7 +27,7 @@ export default [
     component: 'CNavItem',
     name: 'Siswa',
     to: '/theme/colors',
-    icon: 'cil-drop',
+    icon: 'fas fa-school',
   },
   {
     component: 'CNavItem',

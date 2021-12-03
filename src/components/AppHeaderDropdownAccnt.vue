@@ -50,9 +50,13 @@ import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import avatar from '@/assets/images/avatars/8.jpg'
+import { getCurrentInstance } from 'vue';
+
 export default {
   name: 'AppHeaderDropdownAccnt',
   setup() {
+            const { proxy } = getCurrentInstance();
+
 
 
             //state token
@@ -72,18 +76,14 @@ export default {
 
                 //logout
                 axios.defaults.headers.common.Authorization = `Bearer ${token}`
-                axios.post('http://localhost:8000/api/logout')
+                axios.post(`${proxy.baseUrl}logout`)
                 .then(response => {
 
                     if(response.data.success) {
 
-                        //remove localStorage
-                        localStorage.removeItem('token')
+                        // //remove localStorage
+                        // localStorage.removeItem('token')
 
-                        //redirect ke halaman login
-                        return router.push({
-                            name: 'login'
-                        })
 
                     }
 
@@ -91,6 +91,13 @@ export default {
                 .catch(error => {
                     console.log(error.response.data)
                 })
+                        //remove localStorage
+                        localStorage.removeItem('token')
+
+                        //redirect ke halaman login
+                        return router.push({
+                            name: 'login'
+                        })
 
             }
     return {
